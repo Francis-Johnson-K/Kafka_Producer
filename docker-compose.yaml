@@ -8,7 +8,7 @@ services:
     ports:
       - 2181:2181
     networks:
-      - dams-kafka-net
+      - kafka-net
   kafka:
     container_name: kafka
     image: wurstmeister/kafka:latest
@@ -17,7 +17,7 @@ services:
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENERS: LISTENER_LOCAL://kafka:29092,LISTENER_REMOTE://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: LISTENER_LOCAL://kafka:29092,LISTENER_REMOTE://ip-10-251-2-54.ap-south-1.compute.internal:9092
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_LOCAL://kafka:29092,LISTENER_REMOTE://enter_the_ip:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_LOCAL:PLAINTEXT,LISTENER_REMOTE:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_LOCAL
       KAFKA_BROKER_ID: 1
@@ -26,7 +26,7 @@ services:
     depends_on:
       - "zookeeper"
     networks:
-      - dams-kafka-net
+      - kafka-net
 networks:
-  dams-kafka-net:
-    name: dams-kafka-net
+  kafka-net:
+    name: kafka-net
